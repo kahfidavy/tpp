@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<!-- Please see the included README.md and LICENSE.md files for license terms and conditions. -->
+
+<head>
+    <title>Pendaftaran</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <script>
+    (function() {
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    })();
+    </script>
+
+    <script src='cordova.js'></script>
+    <script src="js/main.js"></script>
+    
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/default.min.css" />
+    <link rel="stylesheet" href="css/woody.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/table.css" />
+    <link href="css/photoswipe.css" type="text/css" rel="stylesheet" />    
+    <link href='font/terminal_dosis.css' rel='stylesheet' type='text/css'>
+
+	<!-- JavaScripts -->
+ 	<script type="text/javascript" src="js/klass.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script src="js/jquery.mobile-1.0.1.js"></script>
+	<script src="js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="js/code.photoswipe.jquery-3.0.4.min.js"></script>
+    <script type="text/javascript" src="js/misc.js"></script>
+</head>
+<script type="text/javascript">
+      $(document).ready(function(){
+                              
+              // alert('ini jquery');               
+                $("#logout").on("click", function(){
+                    window.location="index.html";
+                });
+              $("#SimpanPesanPartik").on("click", function(){
+                  
+            var data = $("#savedaftar").serialize();    
+                  alert("http://inicumatest.pe.hu/pesanpartik.php"+ data);
+                  //alert(data);
+                  
+            $.post("http://inicumatest.pe.hu/pesanpartik.php", data, function(data){
+                         
+ 		                   if(data.status == "sukses"){
+  				                 alert('Input Berhasil');
+                                 window.location="main.html";
+  			                }
+  			                else if(data.status == 'gagal'){
+                                   alert("Error on query!");
+  							}else{
+                                alert(data.status);
+                                window.location="index.html";
+                            }
+                         
+             });
+                  
+                  
+         });//save onclick
+                  
+                  
+    });//dociment ready
+    </script>
+    <script>
+        $(document).ready(function(){
+            
+            $.post("http://localhost/getLaporan.php",function(response){
+            // alert(JSON.stringify(response));
+                var arr = $.parseJSON(response);
+                var trHTML = '';
+                $.each(arr, function(ix, nilai){      
+                 trHTML += '<tr><td class="text-left">'+arr[ix].lokasi+'</td><td class="text-left">'+arr[ix].keterangan+'</td><td class="text-left"> <img src="http://localhost/upload/'+arr[ix].gambar+'.jpg" id="photoone" height="180" width="140" /></td><td class="text-left">'+arr[ix].status+'</td></tr>'
+                });
+                  $('#tbody').append(trHTML).listview("refresh");
+            });
+         });
+                
+    </script>
+    <script>
+         
+        
+        //batassssssssssssssssssssssssss
+        var x;
+        function myFunction() {
+                
+            x = document.getElementById("poli").value;
+        //poli pagi partik
+            $(document).ready(function(){
+            
+            $.post("http://inicumatest.pe.hu/getpoli.php",function(response){
+            // alert(JSON.stringify(response));
+                var arr = $.parseJSON(response);
+                var trHTML = ' <option value="">---pilih poli---</option>';
+                $.each(arr, function(ix, nilai){      
+                 trHTML += '<option value="'+arr[ix].id+'">'+arr[ix].nama+'</option>'
+                });
+                  $('#politujuan').html(trHTML).listview("refresh");
+            });
+         });
+            $(document).ready(function(){
+           
+        
+            $.post("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&idpoli="+y,function(response){
+               // alert("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&id_poli="+y);
+                var arr = $.parseJSON(response);
+                var trHTML = '<option value="">---pilih dokter---</option>';
+                $.each(arr, function(ix, nilai){           
+                 trHTML += '<option value="'+arr[ix].id+'">'+arr[ix].nama+'</option>'
+                });
+                  $('#dokter').html(trHTML).listview("refresh");
+                
+            });
+        
+         });
+            
+        
+        }
+        var y;
+        function myFunction2() {
+                
+            y = document.getElementById("politujuan").value;
+        $(document).ready(function(){
+           
+        
+            $.post("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&idpoli="+y,function(response){
+               // alert("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&id_poli="+y);
+                var arr = $.parseJSON(response);
+                var trHTML = ' <option value="">---pilih dokter---</option>';
+                $.each(arr, function(ix, nilai){           
+                 trHTML += '<option value="'+arr[ix].id+'">'+arr[ix].nama+'</option>'
+                });
+                  $('#dokter').html(trHTML).listview("refresh");
+                
+            });
+        
+         });
+        }
+        //poli sore partik
+        //
+        
+    </script>
+
+<body>
+    <div data-role="page" id="homepage" data-title="Homepage">
+
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Logo -->	
+	<div class="logo">
+        <h1 style="color:white">Beranda</h1>
+    </div><!--END OF: Logo -->
+
+    <!-- Menu-->
+    <ul data-role="listview" data-inset="true" class="menu">
+        <li><a href="#pendaftaran" data-transition="flip"><img src="images/blog.png" alt="About" class="ui-li-icon">Pendaftaran</a></li>
+        <li><a href="#profile" data-transition="flip"><img src="images/about.png" alt="Homepage" class="ui-li-icon">Profile</a></li>
+        <li><a id="logout"><img src="images/logout.png" alt="Portfolio" class="ui-li-icon" >Log out</a></li>
+    </ul><!--END OF: Menu -->
+    
+    <!-- Search-->
+    
+
+    </div><!--END OF: Wrapper -->
+    
+    <!-- Footer -->
+	<div data-role="footer" class="footer">
+        <h4>Copyright 2018, Virosa Innovation.</h4>
+	</div><!-- END OF: Footer -->
+    
+</div><!-- END OF: Homepage -->
+
+    <!-- Laporan Paging -->
+<div data-role="page" id="pendaftaran" data-title="Pendaftaran">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Pendaftaran</h4>
+    </div><!-- END OF: Header -->
+    <div class="wrapper">
+    <!-- Logo -->	
+	<div class="logo">
+        <h1 style="color:white">NSM</h1>
+    </div><!--END OF: Logo -->
+
+    <!-- Menu-->
+    <ul data-role="listview" data-inset="true" class="menu">
+        <li><a href="#daftar" data-transition="flip"><img src="images/about.png" alt="About" class="ui-li-icon">Daftar</a></li>
+        <li><a href="#listdaftar" data-transition="flip"><img src="images/blog.png" alt="Homepage" class="ui-li-icon">List Pendaftaran</a></li>
+    </ul><!--END OF: Menu -->
+    
+    </div><!--END OF: Wrapper -->
+    
+    <!-- Footer -->
+	<div data-role="footer" class="footer">
+        <h4>Copyright 2018, Virosa Innovation.</h4>
+	</div><!-- END OF: Footer -->
+</div>  <!-- END OF: Laporan Paging -->  
+<!-- REGISTER -->
+<div data-role="page" id="daftar" data-title="About">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Daftar Umum</h4>
+    </div><!-- END OF: Header -->
+
+	<!--Wrapper -->
+	<div class="wrapper">
+
+        
+        <div data-role="content" class="content" data-theme="a" style="margin-top:25px">
+			<form id="savedaftar">
+                <label for="poli">Poli :</label>
+                <select name="poli" id="poli" onchange="myFunction()">
+                <option value="">---pilih poli---</option>
+                <option value="pagi">Pagi</option>
+                <option value="sore">Sore</option>
+                </select>
+                <label for="politujuan">Poli Tujuan :</label>
+                <select name="politujuan" id="politujuan" onchange="myFunction2()">
+                
+                </select>
+                <br />
+                <label for="dokter">Dokter :</label>
+                <select name="dokter" id="dokter">
+                
+                </select>
+                <br />
+                <label for="tanggal">Tanggal :</label>
+                <input id="tanggal" name="tanggal" type="date">
+                <br />
+                <label for="catatan">Catatan untuk petugas :</label>
+                <textarea id="catatan" name="catatan"></textarea>
+                <br />
+               
+                
+                 <div>
+            <label for="fotoktp">Foto KTP :</label><br>
+            <img src="images/EmptyBox-Phone.png" id="fotoktp" height="180" width="140" />
+            
+        </div>
+                 
+                
+                <br />
+                <input type="hidden" name="gambar" id="gambar" value="" />
+        <a class="button" data-inline="true" id="buttonid" data-theme="b" onclick="takepicture()">Take Picture</a>
+                <br />
+                 <br />
+                 <br />
+                
+             <!--Wrapper   <a href="#thankyou" data-rel="dialog" data-transition="pop" data-role="button" data-inline="true" data-theme="b">Send</a>       -->     
+				<a data-role="button" data-inline="true" data-theme="b" id="SimpanPesanPartik">Simpan</a>
+                
+			</form>  
+        </div> 		
+  
+    </div><!-- END OF: Wrapper -->
+
+    <!-- Footer -->
+	<div data-role="footer" class="footer">
+        <h4>Copyright 2018, Virosa Innovation.</h4>
+	</div><!-- END OF: Footer -->
+    
+</div><!-- END OF: About -->
+
+
+<!-- BLOG -->
+<div data-role="page" id="laporanku" data-title="Blog">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Laporanku</h4>
+    </div><!-- END OF: Header -->
+    
+    <div class="wrapper">
+        <!-- Content -->
+        <div data-role="content" class="content">
+			<div class="table-title">
+				<h3>Data Table</h3>
+			</div>
+            <div style="overflow-x:auto;">
+			<table class="table-fill">
+				<thead>
+					<tr>
+						<th class="text-left">Lokasi</th>
+                        <th class="text-left">Keterangan</th>
+						<th class="text-left">gambar</th>
+						<th class="text-left">status</th>
+					</tr>
+				</thead>
+				<tbody class="table-hover" id="tbody">
+<!--
+					<tr>
+						<td class="text-left">.</td>
+						<td class="text-left">.</td>
+						<td class="text-left">.</td>
+						<td class="text-left">.</td>
+					</tr>
+-->
+				</tbody>
+			</table>
+            </div>
+        </div><!-- END OF: Header -->
+    
+</div><!-- END OF: Blog -->
+
+
+
+    
+</div><!-- END OF: Post -->
+    
+    <!-- BLOG -->
+<div data-role="page" id="edukasi" data-title="Blog">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Ruang Edukasi</h4>
+    </div><!-- END OF: Header -->
+    
+    <div class="wrapper">
+        <!-- Content -->
+        <div data-role="content" class="content">
+			<div class="table-title">
+				<h3>Data Table</h3>
+			</div>
+			<table class="table-fill">
+				<thead>
+					<tr>
+						<th class="text-left">Judul</th>
+                        <th class="text-left">Keterangan</th>
+					</tr>
+				</thead>
+				<tbody class="table-hover" id="edu">
+<!--
+					<tr>
+						<td class="text-left">.</td>
+						<td class="text-left">.</td>
+						<td class="text-left">.</td>
+						<td class="text-left">.</td>
+					</tr>
+-->
+				</tbody>
+			</table>
+        </div><!-- END OF: Header -->
+    
+</div><!-- END OF: Blog -->
+
+
+
+    
+</div><!-- END OF: Post -->
+
+<!-- Portfolio -->
+<div data-role="page" id="portfolio" data-title="Portfolio">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Portfolio</h4>
+    </div><!-- END OF: Header -->
+
+	<!-- Portfolio -->
+	<ul id="gallery" class="gallery">
+		<li><a rel="external" href="images/full/001.jpg"><img src="images/thumb/001.jpg" alt="Image 001" /></a></li>
+		<li><a rel="external" href="images/full/002.jpg"><img src="images/thumb/002.jpg" alt="Image 002" /></a></li>
+		<li><a rel="external" href="images/full/003.jpg"><img src="images/thumb/003.jpg" alt="Image 003" /></a></li>
+		<li><a rel="external" href="images/full/004.jpg"><img src="images/thumb/004.jpg" alt="Image 004" /></a></li>
+		<li><a rel="external" href="images/full/005.jpg"><img src="images/thumb/005.jpg" alt="Image 005" /></a></li>
+		<li><a rel="external" href="images/full/006.jpg"><img src="images/thumb/006.jpg" alt="Image 006" /></a></li>
+		<li><a rel="external" href="images/full/007.jpg"><img src="images/thumb/007.jpg" alt="Image 007" /></a></li>
+		<li><a rel="external" href="images/full/008.jpg"><img src="images/thumb/008.jpg" alt="Image 008" /></a></li>
+		<li><a rel="external" href="images/full/009.jpg"><img src="images/thumb/009.jpg" alt="Image 009" /></a></li>
+		<li><a rel="external" href="images/full/010.jpg"><img src="images/thumb/010.jpg" alt="Image 010" /></a></li>
+		<li><a rel="external" href="images/full/011.jpg"><img src="images/thumb/011.jpg" alt="Image 011" /></a></li>
+		<li><a rel="external" href="images/full/012.jpg"><img src="images/thumb/012.jpg" alt="Image 012" /></a></li>
+		<li><a rel="external" href="images/full/013.jpg"><img src="images/thumb/013.jpg" alt="Image 013" /></a></li>
+		<li><a rel="external" href="images/full/014.jpg"><img src="images/thumb/014.jpg" alt="Image 014" /></a></li>
+		<li><a rel="external" href="images/full/015.jpg"><img src="images/thumb/015.jpg" alt="Image 015" /></a></li>
+		<li><a rel="external" href="images/full/016.jpg"><img src="images/thumb/016.jpg" alt="Image 016" /></a></li>
+		<li><a rel="external" href="images/full/017.jpg"><img src="images/thumb/017.jpg" alt="Image 017" /></a></li>
+		<li><a rel="external" href="images/full/018.jpg"><img src="images/thumb/018.jpg" alt="Image 018" /></a></li>
+	</ul><!-- END OF: Portfolio -->
+
+
+
+    <!-- Footer -->
+	<div data-role="footer" class="footer">
+        <h4>Copyright 2018, Virosa Innovation.</h4>
+	</div><!-- END OF: Footer -->
+    
+</div><!-- END OF: Portfolio -->
+
+<!-- Contact -->
+
+
+<!-- Thank You Message -->
+<div data-role="page" id="thankyou" data-title="Thank You">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <h4>Thank You</h4>
+    </div><!-- END OF: Header -->
+    
+    <!-- Content -->
+    <div data-role="content" class="dialog">
+       Thank you for contacting us, we will reply as soon as possible.
+    </div><!-- END OF: Content -->
+   
+
+</div><!-- END OF: Thank You Message -->
+
+<!-- Camera
+    <div class="masthead">
+        <img class="logo" src="images/logo.png" />
+    </div>
+    <div class="content" id="contentid">
+        <div>
+            <div id="imagecontent" class="hide">
+                <div id="imagespace">
+                    <img id="slideshowpicid" class="slideshowpic" />
+                </div>
+                <img src="images/Arrow-L.png" class="arrows" id="previousid" onclick="Previous()" />
+                <img src="images/Arrow-R.png" class="arrows" id="nextid" onclick="Next()" />
+                <img src="images/EndShow.png" class="endbutton" onclick="endslideshow()" />
+            </div>
+            <img src="images/EmptyBox-Phone.png" id="photoone" />
+            <img src="images/EmptyBox-Phone.png" id="phototwo" />
+            <img src="images/EmptyBox-Phone.png" id="photothree" />
+        </div>
+        <div class="button" id="buttonid" onclick="takepicture()">Take Picture</div>
+    </div>
+-->
+</body>
+
+</html>
