@@ -47,7 +47,7 @@ var picturecount=0;
 function onSuccess(imageURI) 
 {
        
-    var pic1 = document.getElementById("fotoktp");
+    var pic1 = document.getElementById("photoone");
 
 
         var changebutton = document.getElementById("buttonid");    
@@ -56,13 +56,11 @@ function onSuccess(imageURI)
         pic1.src = imageURI;
     
 
-//        if(picturecount>=0){
-//            uploadPhoto();
-//        //    changebutton.innerHTML = "Ambil foto lagi";
-//            
-////            changebutton.onclick=uploadPhoto;
-//             
-//        }
+        if(picturecount>=0){
+            changebutton.innerHTML = "Upload";
+            changebutton.onclick=uploadPhoto;
+             
+        }
         
            
 }
@@ -74,7 +72,7 @@ function onFail(message) {
 function makeslideshow()
 {
     var changebutton = document.getElementById("buttonid");
-    var pic1 = document.getElementById("fotoktp");
+    var pic1 = document.getElementById("photoone");
     var pic2 = document.getElementById("phototwo");
     var pic3 = document.getElementById("photothree");
     pic1.className="hide";
@@ -101,7 +99,7 @@ function alignImageMiddle(){
 //Move to the next picture.  If we are at the last picture, we jump to the first.
 function Next()
 {
-    var pic1 = document.getElementById("fotoktp");
+    var pic1 = document.getElementById("photoone");
     var pic2 = document.getElementById("phototwo");
     var pic3 = document.getElementById("photothree");
     var currentpic = document.getElementById("slideshowpicid");
@@ -126,7 +124,7 @@ function Next()
 //Move to previous picture.  If we are at the first picutre, we jump to the last.
 function Previous()
 {
-    var pic1 = document.getElementById("fotoktp");
+    var pic1 = document.getElementById("photoone");
     var pic2 = document.getElementById("phototwo");
     var pic3 = document.getElementById("photothree");
 
@@ -153,7 +151,7 @@ function endslideshow()
     document.getElementById("imagecontent").className="hide";
     picturecount=0;
 
-    var pic1 = document.getElementById("fotoktp");
+    var pic1 = document.getElementById("photoone");
     var pic2 = document.getElementById("phototwo");
     var pic3 = document.getElementById("photothree");
     var changebutton = document.getElementById("buttonid");
@@ -189,7 +187,7 @@ function takepicture()
 
 function uploadPhoto() {
 var changebutton = document.getElementById("buttonid");
-var pic1 = document.getElementById("fotoktp");
+var pic1 = document.getElementById("photoone");
  var options = new FileUploadOptions();
  options.fileKey = "file";
  options.fileName = pic1.src.substr(pic1.src.lastIndexOf('/') + 1);
