@@ -91,9 +91,9 @@
                      
                     var data = $("#cek").serialize();  
                        //  alert("http://www.inicumatest.pe.hu/login.php", data);
-                          alert("http://192.168.1.252/loginantrean.php" + data);
+                       //   alert("http://inicumatest.pe.hu/login.php" + data);
                           
-                    $.post("http://192.168.1.252/loginantrean.php", data, function(data){
+                    $.post("http://inicumatest.pe.hu/login.php", data, function(data){
                                  
          		                   if(data.status == "ada"){
           				                 alert('Login berhasil');
