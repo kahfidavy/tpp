@@ -46,7 +46,7 @@
 
     <!-- Core plugins -->
     <plugin name="cordova-plugin-battery-status" />
-    <plugin name="cordova-plugin-camera" />
+    <plugin name="cordova-plugin-camera" spec="2.0"/>
     <plugin name="cordova-plugin-media-capture" />
     <plugin name="cordova-plugin-console" />
     <plugin name="cordova-plugin-contacts" />
