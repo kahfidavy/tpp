@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.virosainnovation.tpp"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.virosainnovation.tpp"
     }
   },
   "dependent_plugins": {
