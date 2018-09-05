@@ -46,7 +46,7 @@
               $("#SimpanPesanPartik").on("click", function(){
                   
             var data = $("#savedaftar").serialize();    
-                  alert("http://inicumatest.pe.hu/pesanpartik.php"+ data);
+                  //alert("http://inicumatest.pe.hu/pesanpartik.php"+ data);
                   //alert(data);
                   
             $.post("http://inicumatest.pe.hu/pesanpartik.php", data, function(data){
@@ -57,6 +57,9 @@
   			                }
   			                else if(data.status == 'gagal'){
                                    alert("Error on query!");
+  							}
+							else if(data.status == 'belum'){
+                                   alert('Ada yang belum keisi');
   							}else{
                                 alert(data.status);
                                 window.location="index.html";
@@ -65,7 +68,33 @@
              });
                   
                   
-         });//save onclick
+         });//save daftar
+		 
+		 $("#simpanrm").on("click", function(){
+		 var data = $("#saverm").serialize();    
+                  //alert("http://inicumatest.pe.hu/pesanpartik.php"+ data);
+                  alert(""+data);
+                  
+            $.post("http://inicumatest.pe.hu/tambahrm.php", data, function(data){
+                         
+ 		                   if(data.status == "sukses"){
+  				                 alert('Input Berhasil');
+                                 window.location="main.html";
+  			                }
+  			                else if(data.status == 'gagal'){
+                                   alert("Error on query!");
+  							}else if(data.status == 'belum'){
+                                   alert('Ada yang belum keisi');
+  							}
+							else{
+                                alert(data.status);
+                                window.location="index.html";
+                            }
+                         
+             });
+                  
+                  
+         });
                   
                   
     });//dociment ready
@@ -73,14 +102,27 @@
     <script>
         $(document).ready(function(){
             
-            $.post("http://localhost/getLaporan.php",function(response){
+            $.post("http://inicumatest.pe.hu/getrm.php",function(response){
             // alert(JSON.stringify(response));
                 var arr = $.parseJSON(response);
                 var trHTML = '';
                 $.each(arr, function(ix, nilai){      
-                 trHTML += '<tr><td class="text-left">'+arr[ix].lokasi+'</td><td class="text-left">'+arr[ix].keterangan+'</td><td class="text-left"> <img src="http://localhost/upload/'+arr[ix].gambar+'.jpg" id="photoone" height="180" width="140" /></td><td class="text-left">'+arr[ix].status+'</td></tr>'
+                 trHTML += '<tr><td class="text-left">'+arr[ix].rm+'</td><td class="text-left">'+arr[ix].nama+'</td><td class="text-left"> '+arr[ix].tgl+'</td><td class="text-left">'+arr[ix].alamat+'</td><td class="text-left">'+arr[ix].kelamin+'</td></tr>'
                 });
-                  $('#tbody').append(trHTML).listview("refresh");
+                  $('#lrm').append(trHTML).listview("refresh");
+            });
+         });
+		 
+		 $(document).ready(function(){
+            
+            $.post("http://inicumatest.pe.hu/getdaftar.php",function(response){
+            // alert(JSON.stringify(response));
+                var arr = $.parseJSON(response);
+                var trHTML = '';
+                $.each(arr, function(ix, nilai){      
+                 trHTML += '<tr><td class="text-left">'+arr[ix].rm+'</td><td class="text-left">'+arr[ix].nama+'</td><td class="text-left"> '+arr[ix].tgldaftar+'</td><td class="text-left">'+arr[ix].tglperiksa+'</td><td class="text-left">'+arr[ix].status+'</td></tr>'
+                });
+                  $('#ldr').append(trHTML).listview("refresh");
             });
          });
                 
@@ -144,6 +186,23 @@
         
          });
         }
+		
+
+                
+		$(document).ready(function(){
+            $.post("http://inicumatest.pe.hu/getrm.php",function(response){
+               // alert("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&id_poli="+y);
+                var arr = $.parseJSON(response);
+                var trHTML = ' <option value="">---pilih RM---</option>';
+                $.each(arr, function(ix, nilai){           
+                 trHTML += '<option value="'+arr[ix].id+'">'+arr[ix].rm+' ------ '+arr[ix].nama+'</option>'
+                });
+                  $('#rminput').html(trHTML).listview("refresh");
+                
+            });
+        
+         });
+	
         //poli sore partik
         //
         
@@ -162,6 +221,7 @@
     <!-- Menu-->
     <ul data-role="listview" data-inset="true" class="menu">
         <li><a href="#pendaftaran" data-transition="flip"><img src="images/blog.png" alt="About" class="ui-li-icon">Pendaftaran</a></li>
+        <li><a href="#rm" data-transition="flip"><img src="images/blog.png" alt="rm" class="ui-li-icon">Kelola Rekam Medis</a></li>
         <li><a href="#profile" data-transition="flip"><img src="images/about.png" alt="Homepage" class="ui-li-icon">Profile</a></li>
         <li><a id="logout"><img src="images/logout.png" alt="Portfolio" class="ui-li-icon" >Log out</a></li>
     </ul><!--END OF: Menu -->
@@ -203,7 +263,90 @@
 	<div data-role="footer" class="footer">
         <h4>Copyright 2018, Virosa Innovation.</h4>
 	</div><!-- END OF: Footer -->
-</div>  <!-- END OF: Laporan Paging -->  
+</div>
+<!--RM -->
+<div data-role="page" id="rm" data-title="rm">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>RM</h4>
+    </div><!-- END OF: Header -->
+    <div class="wrapper">
+    <!-- Logo -->	
+	<div class="logo">
+        <h1 style="color:white">NSM</h1>
+    </div><!--END OF: Logo -->
+
+    <!-- Menu-->
+    <ul data-role="listview" data-inset="true" class="menu">
+        <li><a href="#insrm" data-transition="flip"><img src="images/about.png" alt="About" class="ui-li-icon">Tambahkan RM</a></li>
+        <li><a href="#listrm" data-transition="flip"><img src="images/blog.png" alt="Homepage" class="ui-li-icon">List RM</a></li>
+    </ul><!--END OF: Menu -->
+    
+    </div><!--END OF: Wrapper -->
+    
+    <!-- Footer -->
+	<div data-role="footer" class="footer">
+        <h4>Copyright 2018, Virosa Innovation.</h4>
+	</div><!-- END OF: Footer -->
+</div>  <!-- END OF: RM-->  
+<!-- Tambah RM -->
+<div data-role="page" id="insrm" data-title="About">
+
+    <!-- Header -->
+    <div data-role="header" class="header">
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Register</h4>
+    </div><!-- END OF: Header -->
+
+	<!--Wrapper -->
+	<div class="wrapper">
+
+        
+        <div data-role="content" class="content" data-theme="a" style="margin-top:25px">
+			<form id="saverm" name="reg" >
+                <label for="rm">RM :</label>
+                <input type="text" name="rm" id="rm" value=""  />
+                
+                <br />
+                
+                <label for="nama">Nama :</label>
+                <input type="Text" name="nama" id="nama" value=""  />
+                
+                <br />
+				
+				<label for="tgl">Tanggal Lahir :</label>
+                <input type="date" name="tgl" id="tgl" value=""  />
+                
+                <br />
+                
+                <label for="alamat">Alamat :</label>
+                <input type="text" name="alamat" id="alamat" value=""  />
+                <br />
+                
+                <select name="kelamin" id="kelamin">
+                <option value="laki-laki">Laki-laki</option>
+                <option value="perempuan">Perempuan</option>
+                </select>
+                <br />         
+                
+                <br />
+                
+             <!--Wrapper   <a href="#thankyou" data-rel="dialog" data-transition="pop" data-role="button" data-inline="true" data-theme="b">Send</a>       -->     
+				<a data-role="button" data-inline="true" data-theme="b" id="simpanrm">Simpan</a>
+                
+			</form>  
+        </div> 		
+  
+    </div><!-- END OF: Wrapper -->
+
+    <!-- Footer -->
+	<div data-role="footer" class="footer">
+        <h4>Copyright 2018, Virosa Innovation.</h4>
+	</div><!-- END OF: Footer -->
+    
+</div><!-- END OF: Tambah RM -->
+
+
 <!-- REGISTER -->
 <div data-role="page" id="daftar" data-title="About">
 
@@ -224,7 +367,13 @@
                 <option value="pagi">Pagi</option>
                 <option value="sore">Sore</option>
                 </select>
-                <label for="politujuan">Poli Tujuan :</label>
+                <br />
+				<label for="rminput">RM :</label>
+				<select name="rminput" id="rminput" onchange="myFunction3()">
+                
+                </select>
+				<br />
+				<label for="politujuan">Poli Tujuan :</label>
                 <select name="politujuan" id="politujuan" onchange="myFunction2()">
                 
                 </select>
@@ -273,30 +422,31 @@
 
 
 <!-- BLOG -->
-<div data-role="page" id="laporanku" data-title="Blog">
+<div data-role="page" id="listrm" data-title="Blog">
 
     <!-- Header -->
     <div data-role="header" class="header">
-       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Laporanku</h4>
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>List RM</h4>
     </div><!-- END OF: Header -->
     
     <div class="wrapper">
         <!-- Content -->
         <div data-role="content" class="content">
 			<div class="table-title">
-				<h3>Data Table</h3>
+				<h3>List RM</h3>
 			</div>
             <div style="overflow-x:auto;">
-			<table class="table-fill">
+			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="text-left">Lokasi</th>
-                        <th class="text-left">Keterangan</th>
-						<th class="text-left">gambar</th>
-						<th class="text-left">status</th>
+						<th class="text-left">RM</th>
+                        <th class="text-left">Nama</th>
+						<th class="text-left">Tanggal Lahir</th>
+						<th class="text-left">Alamat</th>
+						<th class="text-left">Jenis Kelamin</th>
 					</tr>
 				</thead>
-				<tbody class="table-hover" id="tbody">
+				<tbody id="lrm">
 <!--
 					<tr>
 						<td class="text-left">.</td>
@@ -310,35 +460,34 @@
             </div>
         </div><!-- END OF: Header -->
     
-</div><!-- END OF: Blog -->
-
-
-
-    
+	</div><!-- END OF: Blog -->
 </div><!-- END OF: Post -->
-    
-    <!-- BLOG -->
-<div data-role="page" id="edukasi" data-title="Blog">
 
+<!-- List Pendaftaran -->
+<div data-role="page" id="listdaftar" data-title="Blog">
     <!-- Header -->
     <div data-role="header" class="header">
-       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>Ruang Edukasi</h4>
+       <a href="#" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>List Daftar</h4>
     </div><!-- END OF: Header -->
     
     <div class="wrapper">
         <!-- Content -->
         <div data-role="content" class="content">
 			<div class="table-title">
-				<h3>Data Table</h3>
+				<h3>List Daftar</h3>
 			</div>
-			<table class="table-fill">
+            <div style="overflow-x:auto;">
+			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="text-left">Judul</th>
-                        <th class="text-left">Keterangan</th>
+						<th class="text-left">RM</th>
+                        <th class="text-left">Nama</th>
+                        <th class="text-left">Tanggal Daftar</th>
+                        <th class="text-left">Tanggal Periksa</th>
+						<th class="text-left">Status</th>
 					</tr>
 				</thead>
-				<tbody class="table-hover" id="edu">
+				<tbody id="ldr">
 <!--
 					<tr>
 						<td class="text-left">.</td>
@@ -349,14 +498,13 @@
 -->
 				</tbody>
 			</table>
+            </div>
         </div><!-- END OF: Header -->
     
-</div><!-- END OF: Blog -->
-
-
-
-    
+	</div><!-- END OF: Blog -->
 </div><!-- END OF: Post -->
+
+
 
 <!-- Portfolio -->
 <div data-role="page" id="portfolio" data-title="Portfolio">
