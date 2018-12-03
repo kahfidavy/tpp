@@ -201,7 +201,7 @@ var pic1 = document.getElementById("fotoktp");
  options.chunkedMode = false;
 
 var ft = new FileTransfer();
- ft.upload(pic1.src, "http://inicumatest.pe.hu/upload.php", function(result){
+ ft.upload(pic1.src, "https://tpp.rselizabeth.co.id/upload.php", function(result){
  console.log(JSON.stringify(result));
  }, function(error){
  console.log(JSON.stringify(error));

@@ -46,10 +46,10 @@
               $("#SimpanPesanPartik").on("click", function(){
                   
             var data = $("#savedaftar").serialize();    
-                  //alert("http://inicumatest.pe.hu/pesanpartik.php"+ data);
+                  //alert("https://tpp.rselizabeth.co.id/pesanpartik.php"+ data);
                   //alert(data);
                   
-            $.post("http://inicumatest.pe.hu/pesanpartik.php", data, function(data){
+            $.post("https://tpp.rselizabeth.co.id/pesanpartik.php", data, function(data){
                          
  		                   if(data.status == "sukses"){
   				                 alert('Input Berhasil');
@@ -72,10 +72,10 @@
 		 
 		 $("#simpanrm").on("click", function(){
 		 var data = $("#saverm").serialize();    
-                  //alert("http://inicumatest.pe.hu/pesanpartik.php"+ data);
+                  //alert("https://tpp.rselizabeth.co.id/pesanpartik.php"+ data);
                   alert(""+data);
                   
-            $.post("http://inicumatest.pe.hu/tambahrm.php", data, function(data){
+            $.post("https://tpp.rselizabeth.co.id/tambahrm.php", data, function(data){
                          
  		                   if(data.status == "sukses"){
   				                 alert('Input Berhasil');
@@ -99,7 +99,7 @@
     <script>
         $(document).ready(function(){
             
-            $.post("http://inicumatest.pe.hu/getrm.php",function(response){
+            $.post("https://tpp.rselizabeth.co.id/getrm.php",function(response){
             // alert(JSON.stringify(response));
                 var arr = $.parseJSON(response);
                 var trHTML = '';
@@ -112,7 +112,7 @@
 		 
 		 $(document).ready(function(){
             
-            $.post("http://inicumatest.pe.hu/getdaftar.php",function(response){
+            $.post("https://tpp.rselizabeth.co.id/getdaftar.php",function(response){
             // alert(JSON.stringify(response));
                 var arr = $.parseJSON(response);
                 var trHTML = '';
@@ -135,7 +135,7 @@
         //poli pagi partik
             $(document).ready(function(){
             
-            $.post("http://inicumatest.pe.hu/getpoli.php",function(response){
+            $.post("https://tpp.rselizabeth.co.id/getpoli.php",function(response){
             // alert(JSON.stringify(response));
                 var arr = $.parseJSON(response);
                 var trHTML = ' <option value="">---pilih poli---</option>';
@@ -148,8 +148,8 @@
             $(document).ready(function(){
            
         
-            $.post("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&idpoli="+y,function(response){
-               // alert("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&id_poli="+y);
+            $.post("https://tpp.rselizabeth.co.id/getdokterpoli.php?poli="+x+"&idpoli="+y,function(response){
+               // alert("https://tpp.rselizabeth.co.id/getdokterpoli.php?poli="+x+"&id_poli="+y);
                 var arr = $.parseJSON(response);
                 var trHTML = '<option value="">---pilih dokter---</option>';
                 $.each(arr, function(ix, nilai){           
@@ -170,8 +170,8 @@
         $(document).ready(function(){
            
         
-            $.post("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&idpoli="+y,function(response){
-               // alert("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&id_poli="+y);
+            $.post("https://tpp.rselizabeth.co.id/getdokterpoli.php?poli="+x+"&idpoli="+y,function(response){
+               // alert("https://tpp.rselizabeth.co.id/getdokterpoli.php?poli="+x+"&id_poli="+y);
                 var arr = $.parseJSON(response);
                 var trHTML = ' <option value="">---pilih dokter---</option>';
                 $.each(arr, function(ix, nilai){           
@@ -186,7 +186,7 @@
 		function delrmfunc(id) {
 			alert(""+id);
 			var data = id;
-            $.post("http://inicumatest.pe.hu/hapusrm.php?id="+id, function(data){
+            $.post("https://tpp.rselizabeth.co.id/hapusrm.php?id="+id, function(data){
                          
  		                   if(data.status == "sukses"){
   				                 alert('Input Berhasil');
@@ -208,8 +208,8 @@
 
                 
 		$(document).ready(function(){
-            $.post("http://inicumatest.pe.hu/getrm.php",function(response){
-               // alert("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&id_poli="+y);
+            $.post("https://tpp.rselizabeth.co.id/getrm.php",function(response){
+               // alert("https://tpp.rselizabeth.co.id/getdokterpoli.php?poli="+x+"&id_poli="+y);
                 var arr = $.parseJSON(response);
                 var trHTML = ' <option value="">---pilih RM---</option>';
                 $.each(arr, function(ix, nilai){           
@@ -380,8 +380,8 @@
 			<form id="saveprofile" name="saveprofile" >
 			<script>
 			$(document).ready(function(){
-				$.post("http://inicumatest.pe.hu/getprofile.php",function(response){
-				   // alert("http://inicumatest.pe.hu/getdokterpoli.php?poli="+x+"&id_poli="+y);
+				$.post("https://tpp.rselizabeth.co.id/getprofile.php",function(response){
+				   // alert("https://tpp.rselizabeth.co.id/getdokterpoli.php?poli="+x+"&id_poli="+y);
 					var arr = $.parseJSON(response);
 					var trHTML = '';
 					$.each(arr, function(ix, nilai){  				
