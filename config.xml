@@ -45,26 +45,26 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
-    <plugin name="cordova-plugin-battery-status" source="npm"/>
-    <plugin name="cordova-plugin-camera" source="npm"/>
-    <plugin name="cordova-plugin-media-capture" source="npm"/>
-    <plugin name="cordova-plugin-console" source="npm"/>
-    <plugin name="cordova-plugin-contacts" source="npm"/>
-    <plugin name="cordova-plugin-device" source="npm"/>
-    <plugin name="cordova-plugin-dialogs" source="npm"/>
-    <plugin name="cordova-plugin-file-transfer" source="npm"/>
-    <plugin name="cordova-plugin-geolocation" source="npm"/>
-    <plugin name="cordova-plugin-globalization" source="npm"/>
-    <plugin name="cordova-plugin-inappbrowser" source="npm"/>
-    <plugin name="cordova-plugin-media" source="npm"/>
-    <plugin name="cordova-plugin-network-information" source="npm"/>
-    <plugin name="cordova-plugin-splashscreen" source="npm"/>
-    <plugin name="cordova-plugin-vibration" source="npm"/>
+    <gap:plugin name="cordova-plugin-battery-status" source="npm"/>
+    <gap:plugin name="cordova-plugin-camera" version="2.3.0" source="npm"/>
+    <gap:plugin name="cordova-plugin-media-capture" source="npm"/>
+    <gap:plugin name="cordova-plugin-console" source="npm"/>
+    <gap:plugin name="cordova-plugin-contacts" source="npm"/>
+    <gap:plugin name="cordova-plugin-device" source="npm"/>
+    <gap:plugin name="cordova-plugin-dialogs" source="npm"/>
+    <gap:plugin name="cordova-plugin-file-transfer" source="npm"/>
+    <gap:plugin name="cordova-plugin-geolocation" source="npm"/>
+    <gap:plugin name="cordova-plugin-globalization" source="npm"/>
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
+    <gap:plugin name="cordova-plugin-media" source="npm"/>
+    <gap:plugin name="cordova-plugin-network-information" source="npm"/>
+    <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
+    <gap:plugin name="cordova-plugin-vibration" source="npm"/>
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
-        <plugin name="com.phonegap.plugins.barcodescanner" />
+        <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
 
     <!-- Define app icon for each platform. 
@@ -114,7 +114,7 @@
     <access origin="*"/>
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
-    <plugin name="cordova-plugin-whitelist" version="1" />
+    <gap:plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
