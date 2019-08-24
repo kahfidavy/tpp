@@ -45,21 +45,21 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
-    <plugin name="cordova-plugin-battery-status" />
-    <plugin name="cordova-plugin-camera" spec="2.0"/>
-    <plugin name="cordova-plugin-media-capture" />
-    <plugin name="cordova-plugin-console" />
-    <plugin name="cordova-plugin-contacts" />
-    <plugin name="cordova-plugin-device" />
-    <plugin name="cordova-plugin-dialogs" />
-    <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
-    <plugin name="cordova-plugin-geolocation" />
-    <plugin name="cordova-plugin-globalization" />
+    <plugin name="cordova-plugin-battery-status" source="npm"/>
+    <plugin name="cordova-plugin-camera" source="npm"/>
+    <plugin name="cordova-plugin-media-capture" source="npm"/>
+    <plugin name="cordova-plugin-console" source="npm"/>
+    <plugin name="cordova-plugin-contacts" source="npm"/>
+    <plugin name="cordova-plugin-device" source="npm"/>
+    <plugin name="cordova-plugin-dialogs" source="npm"/>
+    <plugin name="cordova-plugin-file-transfer" source="npm"/>
+    <plugin name="cordova-plugin-geolocation" source="npm"/>
+    <plugin name="cordova-plugin-globalization" source="npm"/>
     <plugin name="cordova-plugin-inappbrowser" source="npm"/>
-    <plugin name="cordova-plugin-media" />
-    <plugin name="cordova-plugin-network-information" />
-    <plugin name="cordova-plugin-splashscreen" />
-    <plugin name="cordova-plugin-vibration" />
+    <plugin name="cordova-plugin-media" source="npm"/>
+    <plugin name="cordova-plugin-network-information" source="npm"/>
+    <plugin name="cordova-plugin-splashscreen" source="npm"/>
+    <plugin name="cordova-plugin-vibration" source="npm"/>
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
