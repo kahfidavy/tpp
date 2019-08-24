@@ -13,7 +13,14 @@
     },
     "cordova": {
         "plugins": {
-            "cordova-plugin-inappbrowser": {}
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-battery-status": {},
+            "cordova-plugin-media-capture": {},
+            "cordova-plugin-console": {},
+            "cordova-plugin-contacts": {},
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-media": {}
         }
     }
 }

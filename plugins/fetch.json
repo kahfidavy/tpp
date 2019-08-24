@@ -20,7 +20,7 @@
   "cordova-plugin-console": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-console@~1.0.3"
+      "id": "cordova-plugin-console"
     },
     "is_top_level": true,
     "variables": {}
@@ -28,7 +28,7 @@
   "cordova-plugin-dialogs": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-dialogs@~1.2.1"
+      "id": "cordova-plugin-dialogs"
     },
     "is_top_level": true,
     "variables": {}
@@ -76,7 +76,7 @@
   "cordova-plugin-media-capture": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-media-capture@3.0.2"
+      "id": "cordova-plugin-media-capture@3.0.3"
     },
     "is_top_level": true,
     "variables": {}
@@ -124,7 +124,7 @@
   "cordova-plugin-media": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-media@5.0.2"
+      "id": "cordova-plugin-media@5.0.3"
     },
     "is_top_level": true,
     "variables": {}
