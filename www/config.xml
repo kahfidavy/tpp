@@ -56,7 +56,6 @@
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
     <plugin name="cordova-plugin-geolocation" />
     <plugin name="cordova-plugin-globalization" />
-    <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
     <plugin name="cordova-plugin-media" />
     <plugin name="cordova-plugin-network-information" />
     <plugin name="cordova-plugin-splashscreen" />
